@@ -2,6 +2,14 @@ var audio_context;
 var str1;
 var str2;
 var str3;
+var thin = {'freq': 400};
+var regular = {'freq': 200};
+var thick = {'freq': 100};
+
+function set_freq(freq, element, string){
+  document.getElementById(element).textContent = freq;
+  string.freq = freq;
+}
 
 function quiet(){
   stop(str1);
@@ -99,6 +107,25 @@ window.onload = function(){
   str1 = new KarplusString(audio_context, 'visualizer2', 1);
   str2 = new KarplusString(audio_context, 'visualizer3', 2);
   str3 = new KarplusString(audio_context, 'visualizer4', 3);
+
+  document.getElementById('visualizer2').addEventListener('touchstart', function(ev) {
+    stop(str1);
+  }, false);
+  document.getElementById('visualizer2').addEventListener('touchend', function(ev) {
+    play_string(str1, thin.freq);
+  }, false);
+  document.getElementById('visualizer3').addEventListener('touchstart', function(ev) {
+    stop(str2);
+  }, false);
+  document.getElementById('visualizer3').addEventListener('touchend', function(ev) {
+    play_string(str2, regular.freq);
+  }, false);
+  document.getElementById('visualizer4').addEventListener('touchstart', function(ev) {
+    stop(str3);
+  }, false);
+  document.getElementById('visualizer4').addEventListener('touchend', function(ev) {
+    play_string(str3, thick.freq);
+  }, false);
 
   analyser = audio_context.createAnalyser();
   analyser.fftSize = 4096;
