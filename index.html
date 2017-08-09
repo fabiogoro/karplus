@@ -8,16 +8,16 @@
     <canvas class="visualizer" width="640" height="100"></canvas> 
     <br>
     <canvas id="visualizer2" class="visualizer2" onmouseover='stop(str1);' onmouseleave='play_string(str1, thin.freq);' width="640" height="10"></canvas> 
-    <input type="range" onchange="set_freq(this.value, 'thin', thin);" name="points" min="200" max="2000">
-    <span id="thin"></span>
+    <input type="range" onchange="set_freq(this.value, 'thin', thin);" name="points" min="200" max="2000" value=400>
+    <span id="thin">400</span>
     <br>
     <canvas id="visualizer3" class="visualizer3" onmouseover='stop(str2);' onmouseleave='play_string(str2, regular.freq);' width="640" height="10"></canvas> 
-    <input type="range" onchange="set_freq(this.value, 'regular', regular);" name="points" min="100" max="1000">
-    <span id="regular"></span>
+    <input type="range" onchange="set_freq(this.value, 'regular', regular);" name="points" min="100" max="1000" value=200>
+    <span id="regular">200</span>
     <br>
     <canvas id="visualizer4" class="visualizer4" onmouseover='stop(str3);' onmouseleave="play_string(str3, thick.freq);" width="640" height="10"></canvas> 
-    <input type="range" onchange="set_freq(this.value, 'thick', thick);" name="points" min="10" max="200">
-    <span id="thick"></span>
+    <input type="range" onchange="set_freq(this.value, 'thick', thick);" name="points" min="10" max="200" value=100>
+    <span id="thick">100</span>
     <br>
     <input type='button' onclick='quiet();' name='stop' value='stop' />
 </body>

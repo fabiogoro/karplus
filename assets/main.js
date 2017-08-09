@@ -35,9 +35,10 @@ function KarplusString(context, id, size){
 
 function create_analyser(node, id, size){
   var a = audio_context.createAnalyser();
-  a.fftSize = 4096;
+  a.fftSize = 128;
   node.connect(a);
   var bufferLength = a.frequencyBinCount;
+  console.log(bufferLength)
   var dataArray = new Float32Array(bufferLength);
   var canvas_e = document.getElementsByClassName(id)[0];
   var canvas = canvas_e.getContext("2d");
@@ -52,16 +53,15 @@ function create_analyser(node, id, size){
     canvas.clearRect(0, 0, WIDTH, HEIGHT);
     var timeDomain = new Uint8Array(a.frequencyBinCount);
     a.getByteTimeDomainData(timeDomain);
-    var zoom = 32;
     var offset = 0;
-    for (var i = 0; i < a.frequencyBinCount/zoom; i++) {
+    for (var i = 0; i < a.frequencyBinCount; i++) {
       canvas.beginPath();
       canvas.moveTo((i-1)*barWidth,offset);
       var value = timeDomain[i];
       var percent = value / 256;
       var height = HEIGHT * percent;
       offset = HEIGHT - height - 1;
-      var barWidth = WIDTH/a.frequencyBinCount*zoom;
+      var barWidth = WIDTH/a.frequencyBinCount;
       //canvas.fillStyle = 'black';
       //canvas.fillRect(i * barWidth, offset, 1, 1);
       canvas.lineTo(i*barWidth,offset);
